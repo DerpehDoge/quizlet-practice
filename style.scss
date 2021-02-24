@@ -1,0 +1,283 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200&family=Noto+Sans+SC:wght@100&display=swap");
+
+:root {
+    --skew: 5deg;
+}
+
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -5;
+    text-align: center;
+    font-size: 2em;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+#bottom {
+    width: 100vw;
+    height: 15vh;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-weight: lighter;
+    font-size: 1.3em;
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0.1;
+        color: rgba(255, 255, 255, 0.25);
+        font-size: 6em;
+    }
+    20% {
+        opacity: 1;
+        font-size: 8em;
+    }
+    100% {
+        opacity: 0;
+        color: rgba(82, 214, 104, 0.507);
+        font-size: 9em;
+    }
+}
+
+@keyframes zoomOut {
+    0% {
+        opacity: 0.1;
+        color: rgba(255, 255, 255, 0.25);
+        font-size: 9em;
+    }
+    20% {
+        opacity: 1;
+        font-size: 8em;
+    }
+    100% {
+        opacity: 0;
+        color: rgba(231, 66, 66, 0.507);
+        font-size: 6em;
+    }
+}
+
+.multiplier {
+    animation: zoomIn 1s forwards;
+    font-size: 5em;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 5px;
+}
+
+body {
+    background-color: black;
+    color: white;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    text-align: center;
+    font-family: "Noto Sans SC", monospace;
+}
+
+.mono {
+    font-family: "IBM Plex Mono", monospace;
+}
+
+@keyframes zoomOut {
+    0% {
+        opacity: 0.1;
+        color: rgba(255, 255, 255, 0.25);
+        font-size: 9em;
+    }
+    20% {
+        opacity: 1;
+        font-size: 8em;
+    }
+    100% {
+        opacity: 0;
+        color: rgba(231, 66, 66, 0.507);
+        font-size: 6em;
+    }
+}
+
+.chinese {
+    font-family: "Noto Sans SC", monospace;
+}
+
+.wmultiplier {
+    animation: zoomOut 1s forwards;
+    font-size: 5em;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 5px;
+}
+
+h1 {
+    color: white;
+}
+
+#app {
+    display: inherit;
+}
+
+form {
+    display: inherit;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+}
+
+#sendButton {
+    font-family: "Space Grotesk", sans-serif;
+    background-color: transparent;
+    color: white;
+    border: none;
+    margin-top: 1em;
+    font-size: 2rem;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#sendButton:hover {
+    transform: scale(1.2);
+    letter-spacing: 2px;
+    color: lightsteelblue;
+}
+
+#sendButton:focus {
+    transform: scale(1.2);
+    letter-spacing: 2px;
+    color: lightskyblue;
+    outline: none;
+}
+
+#sendButton:active {
+    transform: scale(1.5);
+    letter-spacing: 5px;
+    color: lightgreen;
+    outline: none;
+}
+
+.input {
+    padding: 50px;
+    font-family: "Space Grotesk", sans-serif;
+    background: transparent;
+    border: 0;
+    width: 50px;
+    border-bottom: 2px solid white;
+    text-align: center;
+    color: white;
+    outline: 0;
+    font-size: 2rem;
+    padding: 5px;
+    transition: 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes inputCorrect {
+    0% {
+        width: 30px;
+        border: 0;
+        color: rgba(255, 255, 255, 0.25);
+        font-size: 1.6em;
+    }
+    10% {
+        width: 50px;
+        padding: 0px;
+        color: rgb(104, 208, 114);
+        font-size: 3em;
+    }
+    100% {
+        width: 30px;
+        padding: 0;
+        border: 0;
+        color: rgb(144, 238, 144);
+        font-size: 1.6em;
+    }
+}
+
+@keyframes inputIncorrect {
+    0% {
+        width: 30px;
+        border: 0;
+        color: rgba(255, 255, 255, 0.25);
+        font-size: 1.6em;
+    }
+    10% {
+        width: 30px;
+        transform: rotate(3deg);
+        color: lightcoral;
+        font-size: 1.8em;
+    }
+    100% {
+        width: 30px;
+        padding: 0;
+        border: 0;
+        color: salmon;
+        font-size: 1.6em;
+    }
+}
+
+.input.waiting {
+    border: 0;
+    font-size: 1.6em;
+    width: 30px;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.input.correct {
+    animation: inputCorrect 1.25s forwards;
+}
+
+.input.incorrect {
+    animation: inputIncorrect 1.25s forwards;
+}
+
+.tq {
+    font-size: 1.6em;
+    letter-spacing: 2px;
+    display: inline-block;
+}
+
+.pinyin {
+    position: relative;
+    display: inline-block;
+    color: lightsalmon;
+}
+
+.pinyin::before {
+    content: attr(pinyin);
+    opacity: 0;
+    width: 120px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    color: #fff;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 5px 0;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    transition: 0.25s ease-in-out;
+}
+
+.pinyin:hover::before {
+    opacity: 1;
+}
