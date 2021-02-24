@@ -183,7 +183,7 @@ socket.on("questionInit", (src) => {
 function error(title) {
     $("#background").html(`<h1 class="wmultiplier">error.</h1>`);
     $("#app").fadeOut(250, () => {
-        $("#inputForm").html(`<h1>${src.err}</h1><h3>Please refresh.</h3>`);
+        $("#inputForm").html(`<h1>${title}</h1><h3>Please refresh.</h3>`);
         $("#bottom").fadeOut(250);
         $("#app").fadeIn(250);
     });
