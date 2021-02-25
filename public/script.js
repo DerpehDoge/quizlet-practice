@@ -115,7 +115,7 @@ let listener = $("form").on("submit", (e) => {
             setTimeout(() => {
                 $("#app").fadeOut(250, () => {
                     $("#inputForm").html(
-                        `<h3>The correct answer was</h3><h1 class="mono" style="font-size: 4rem;">${currentQuestion.answers}</h1><h2 class="mono">${currentQuestion.pinyin}</h2>`
+                        `<h3>The correct answer was</h3><h1 class="mono" style="font-size: 4rem;">${currentQuestion.answers}</h1><h2 class="piny">${currentQuestion.pinyin}</h2>`
                     );
                     $("#bottom").fadeOut(250);
                     $("#app").fadeIn(250);
