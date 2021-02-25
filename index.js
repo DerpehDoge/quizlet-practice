@@ -8,6 +8,7 @@ let PORT = process.env.PORT || 3000;
 let nSM = require("node-sass-middleware");
 let quizlet = require("quizlet-fetcher");
 let hanzi = require("hanzi-tools");
+const request = require("request");
 
 app.use(
     nSM({
