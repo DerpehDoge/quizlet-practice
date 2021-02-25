@@ -27,8 +27,9 @@ io.on("connection", (socket) => {
         try {
             data = await quizlet(src);
         } catch (err) {
+            console.log(err);
             socket.emit("questionInit", {
-                err: `Invalid slug. "${src}" is not a valid slug.`,
+                err: `An error occured. ${err}`,
             });
             return;
         }
