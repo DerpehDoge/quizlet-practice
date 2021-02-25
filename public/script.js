@@ -11,6 +11,14 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 let db = firebase.firestore();
 
+function isWindows() {
+    return navigator.platform.indexOf("Win") > -1;
+}
+
+if (!isWindows) {
+    alert("Please use a PC. I'm too bad of a coder to make another port :(");
+}
+
 var socket = io();
 let defaultText = `来	to come; come
 椅子	chair
