@@ -12,33 +12,43 @@ firebase.initializeApp(firebaseConfig);
 let db = firebase.firestore();
 
 var socket = io();
-
-// no cors, i think?
-(function () {
-    var cors_api_host = "cors-anywhere.herokuapp.com";
-    var cors_api_url = "https://" + cors_api_host + "/";
-    var slice = [].slice;
-    var origin = window.location.protocol + "//" + window.location.host;
-    var open = XMLHttpRequest.prototype.open;
-    XMLHttpRequest.prototype.open = function () {
-        var args = slice.call(arguments);
-        var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1]);
-        if (
-            targetOrigin &&
-            targetOrigin[0].toLowerCase() !== origin &&
-            targetOrigin[1] !== cors_api_host
-        ) {
-            args[1] = cors_api_url + args[1];
-        }
-        return open.apply(this, args);
-    };
-})();
+let defaultText = `来	to come; come
+椅子	chair
+桌子	desk; table
+客厅	living room
+沙发	sofa
+书架	bookshelf
+床	bed
+上	top; above; atop
+里	inside; in
+灯	light; lamp
+书	book
+卧室	bedroom
+门	door
+东边	eastern side; east; east side; east direction; to the east of
+西边	west side; western side; west; west direction; to the west of
+南边	south; south side; southern side; south direction; to the south of
+北边	north; north side; northern side; north direction; to the north of
+饭厅	dining room
+卫生间	bathroom; restroom; toilet
+旁边	beside; nearby; side; to the side of
+前面	in front; front; ahead; ahead of; in front of
+后面	behind; back; behind of
+左边	left; left of
+右边	right side; right
+家具	furniture
+花园	garden
+花	flower
+书桌	desk
+干净	clean; neat
+整齐	neat; tidy; orderly
+真	really`;
 
 let source =
     prompt(
-        "Please enter in a valid quizlet ID. Copy everything after 'https://quizlet.com/'. It MUST follow the correct format.",
-        "573099039/chinese-final-exam-clean-data-flash-cards/"
-    ) || "573099039/chinese-final-exam-clean-data-flash-cards/";
+        "Please enter in a valid quizlet set that has been exported using default settings.",
+        defaultText
+    ) || defaultText;
 let multiplier = 0;
 let traditional = !confirm("Are you using simplified? (cancel = no)");
 let english = true;
@@ -150,7 +160,7 @@ function newQuestion(template) {
 
 function randQuestion() {
     if (!questionSrc) {
-        socket.emit("question", {
+        socket.emit("format", {
             trad: traditional,
             eng: english,
             src: source,
@@ -185,7 +195,14 @@ function randQuestion() {
 
 socket.on("questionInit", (src) => {
     if (src.err) {
-        error(src.err);
+        window
+            .fetch(
+                "https://cors-anywhere.herokuapp.com/https://quizlet.com/" +
+                    source,
+                {}
+            )
+            .then((a) => console.log(a))
+            .catch((a) => error(a));
         return;
     } else {
         questionSrc = src;
